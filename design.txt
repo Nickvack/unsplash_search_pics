@@ -1,0 +1,12 @@
+Name: Pexels search pictures
+Description: An app designed to download the first 10 pictures on a search result from the users' choice, the
+link that will be used will be https://www.pexels.com/search/.
+
+Objects: GetImages:
+            create_request():
+            pull_images_url():
+            close_request():
+
+         SaveImages:
+            create_folder():
+            download_image():
