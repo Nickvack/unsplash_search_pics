@@ -1,16 +1,16 @@
-# This is a sample Python script.
+from custom_classes.saveimages import SaveImages
+from custom_classes.getimages import  GetImages
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Data needed for the program to work
+images_links = []
+category = input('Category you want pictures from: ')
+if ' ' in category:
+    category.replace(" ", '-')
 
+create_list = GetImages()
+create_list.create_request(f'https://unsplash.com/s/photos/{category}')
+create_list.pull_images_url(images_links)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+save_images = SaveImages(f'{category}')
+save_images.create_folder(f'{category}')
+save_images.download_images(images_links[:9])

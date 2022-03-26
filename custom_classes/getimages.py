@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class GetImages:
 
     def __init__(self):
@@ -21,21 +22,15 @@ class GetImages:
     def create_request(self, url):
         self.session = requests.session()
         self.req = self.session.get(url, headers=self.hdr)
-        self.soup = BeautifulSoup(self.req.content)
+        self.soup = BeautifulSoup(self.req.content, 'lxml')
 
     def pull_images_url(self, dict_images):
         self.links = self.soup.find('body').findAll('a', {'class': '_LIsc'})
 
         for link in self.links:
-            if link['href'] != '':
-                dict_images.append(link['href'])
+            final_link = link.find('img')
 
-
-images_links = []
-category = input('Category you want pictures from: ')
-x = GetImages()
-x.create_request(f'https://unsplash.com/s/photos/{category}')
-x.pull_images_url(images_links)
-x
+            if final_link['src'] != '':
+                dict_images.append(final_link['src'])
 
 # https://unsplash.com/s/photos/
