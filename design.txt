@@ -1,6 +1,6 @@
-Name: Pexels search pictures
+Name: Unsplash search pictures
 Description: An app designed to download the first 10 pictures on a search result from the users' choice, the
-link that will be used will be https://www.pexels.com/search/.
+link that will be used will be https://unsplash.com/s/photos/{category}.
 
 Objects: GetImages:
             create_request():
